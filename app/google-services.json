@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "731919327809",
-    "project_id": "blood-types-88cea",
-    "storage_bucket": "blood-types-88cea.appspot.com"
+    "project_number": "470738266549",
+    "project_id": "blood-types-77ce2",
+    "storage_bucket": "blood-types-77ce2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:731919327809:android:adc0b7eb941887dcb6dcc0",
+        "mobilesdk_app_id": "1:470738266549:android:867ef6950984d8bd3211fc",
         "android_client_info": {
           "package_name": "com.Blood.types"
         }
       },
       "oauth_client": [
         {
-          "client_id": "731919327809-1eig9ppklppvndvlaa4i9lp4o3lko9fq.apps.googleusercontent.com",
+          "client_id": "470738266549-cklbt5tjnmsindoj2tp9vksj56cmotd3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDRj9LqA5zPYSG5cTaDF0l11OvQUh-1Bgw"
+          "current_key": "AIzaSyDwLmR_6r0CPKZrlzVyPA-_ZD4aLnhNXr0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "731919327809-1eig9ppklppvndvlaa4i9lp4o3lko9fq.apps.googleusercontent.com",
+              "client_id": "470738266549-cklbt5tjnmsindoj2tp9vksj56cmotd3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
