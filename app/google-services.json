@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "731919327809",
+    "project_id": "blood-types-88cea",
+    "storage_bucket": "blood-types-88cea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731919327809:android:adc0b7eb941887dcb6dcc0",
+        "android_client_info": {
+          "package_name": "com.Blood.types"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731919327809-1eig9ppklppvndvlaa4i9lp4o3lko9fq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRj9LqA5zPYSG5cTaDF0l11OvQUh-1Bgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731919327809-1eig9ppklppvndvlaa4i9lp4o3lko9fq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
