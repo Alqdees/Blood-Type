@@ -39,11 +39,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull AdapterBelow holder, int position) {
         Model model = models.get(position);
-        holder.name.setText("model.getName()");
-        holder.number.setText("model.getNumber()");
-        holder.type.setText("model.getBlood_type()");
-
-
+        holder.name.setText(model.getName());
+        holder.type.setText(model.getBlood_type());
+        holder.number.setText(model.getNumber());
     }
 
     @Override
@@ -52,7 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class AdapterBelow extends RecyclerView.ViewHolder{
-        private TextView name,number,type;
+         TextView name,number,type;
         public AdapterBelow(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);

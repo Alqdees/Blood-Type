@@ -9,7 +9,14 @@ public class Model {
     public Model(){
 
     }
-      //Constructor
+
+    public Model(String name, String number, String blood_type) {
+        Name = name;
+        Number = number;
+        Blood_type = blood_type;
+    }
+
+    //Constructor
     public Model(String name,String number,String Location,String blood_type){
 
         this.Name = name;
