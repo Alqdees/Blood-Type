@@ -1,6 +1,13 @@
 package com.Blood.types.Activity;
 
-import androidx.annotation.NonNull;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,39 +15,27 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import android.content.Intent;
-
-import android.content.SharedPreferences;
-import android.os.Bundle;
-
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
-
 import com.Blood.types.Adapter.RecyclerViewAdapter;
 import com.Blood.types.Model.Model;
 import com.Blood.types.R;
 import com.Blood.types.Sqlite.DataBase;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Map;
+
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Model> models;
     private RecyclerViewAdapter adapter;
     private RecyclerView recyclerView;
+
     private FloatingActionButton floatingActionButton;
     FirebaseFirestore db;
     private DataBase dataBase;
@@ -54,28 +49,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
          db = FirebaseFirestore.getInstance();
         models = new ArrayList<>();
-//        dataBase = new DataBase(this);
         preferences = getSharedPreferences("MyBlood",MODE_PRIVATE);
         editor = preferences.edit();
-        floatingActionButton = findViewById(R.id.register);
+        floatingActionButton = findViewById(R.id.registerBtn);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.hasFixedSize();
             showData();
 
-
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (preferences.contains("name") || preferences.contains("number")){
-                    Toast.makeText(MainActivity.this, "انت مسجل فعلا",
-                            Toast.LENGTH_SHORT).show();
-
-                }else {
-                    startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+            floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (preferences.contains("name") || preferences.contains("number")){
+                        Toast.makeText(MainActivity.this, "انت مسجل فعلا",
+                                Toast.LENGTH_SHORT).show();
+                    }else {
+                        startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+                    }
                 }
-            }
-        });
+            });
 
     }
     @Override
@@ -138,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
     }
 
 }

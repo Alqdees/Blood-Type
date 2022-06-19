@@ -94,7 +94,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/loction"
+            android:id="@+id/location"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="text"
@@ -102,18 +102,62 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.constraintlayout.utils.widget.MotionButton
+        android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_left"
-        android:text="تسجيل"
-        android:id="@+id/register"
         android:layout_below="@+id/loctionlable"
-        android:layout_marginTop="32dp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="22sp"
         android:layout_centerInParent="true"
-        />
+        android:layout_marginTop="32dp"
+        android:background="@drawable/buttom"
+        android:text="تسجيل"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
 
+<!--    <LinearLayout-->
+<!--        android:id="@+id/OTP"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/register"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/ET_otp"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="12dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginEnd="12dp"-->
+<!--            android:hint="رمز OTP"-->
+<!--            android:textColorHint="@color/black"-->
+<!--            app:hintTextColor="@color/black">-->
+
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/code"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:inputType="text"-->
+<!--                android:shadowColor="@color/black" />-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        <androidx.constraintlayout.utils.widget.MotionButton-->
+<!--            android:id="@+id/confirm"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+
+<!--            android:layout_centerInParent="true"-->
+<!--            android:layout_marginTop="32dp"-->
+<!--            android:background="@drawable/buttom"-->
+<!--            android:text="تأكيد"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="22sp"-->
+<!--            android:textStyle="bold" />-->
+
+<!--    </LinearLayout>-->
 </RelativeLayout>
