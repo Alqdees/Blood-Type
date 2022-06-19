@@ -1,64 +1,65 @@
 package com.Blood.types.Model;
 
 public class Model {
-    private String Name;
-    private String Number;
-    private String Location;
-    private String Blood_type;
+    private String ID, Name ,number,type,location;
+
     // Empty Constructor
     public Model(){
 
     }
 
-    public Model(String name, String number, String blood_type) {
+    public Model(String name, String number, String type, String location) {
         Name = name;
-        Number = number;
-        Blood_type = blood_type;
+        this.number = number;
+        this.type = type;
+        this.location = location;
     }
 
-    //Constructor
-    public Model(String name,String number,String Location,String blood_type){
-
-        this.Name = name;
-        this.Number = number;
-        this.Location = Location;
-        this.Blood_type = blood_type;
-
-    }
-    public void setName (String name )
-    {
-        this.Name = name;
-    }
-    public String getName()
-    {
-        return this.Name;
+    public Model(String ID, String name, String number, String type, String location) {
+        this.ID = ID;
+        Name = name;
+        this.number = number;
+        this.type = type;
+        this.location = location;
     }
 
-    /**
-     * this get and set
-     * @return
-     */
+    public String getName() {
+        return Name;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
     public String getNumber() {
-        return this.Number;
+        return number;
     }
 
     public void setNumber(String number) {
-        this.Number = number;
+        this.number = number;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getLocation() {
-        return Location;
+        return location;
     }
 
     public void setLocation(String location) {
-        Location = location;
-    }
-
-    public String getBlood_type() {
-        return Blood_type;
-    }
-
-    public void setBlood_type(String blood_type) {
-        Blood_type = blood_type;
+        this.location = location;
     }
 }

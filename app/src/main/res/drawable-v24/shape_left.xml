@@ -9,8 +9,8 @@
                 android:topLeftRadius="20dp"
                 android:topRightRadius="20dp"/>
             <gradient
-                android:startColor="@color/mat"
-                android:endColor="@color/mat2"/>
+                android:startColor="@color/purple_700"
+                android:endColor="@color/purple_700"/>
         </shape>
 
     </item>

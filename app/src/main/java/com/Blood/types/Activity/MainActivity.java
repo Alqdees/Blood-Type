@@ -1,63 +1,143 @@
 package com.Blood.types.Activity;
 
 import androidx.annotation.NonNull;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
+
+import android.content.Intent;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
+
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.Blood.types.Adapter.RecyclerViewAdapter;
 import com.Blood.types.Model.Model;
 import com.Blood.types.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.Blood.types.Sqlite.DataBase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-     ArrayList<Model> models;
-     RecyclerViewAdapter adapter;
-     RecyclerView recyclerView;
-
+    private ArrayList<Model> models;
+    private RecyclerViewAdapter adapter;
+    private RecyclerView recyclerView;
+    private FloatingActionButton floatingActionButton;
+    FirebaseFirestore db;
+    private DataBase dataBase;
+    private Model model;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DatabaseReference databaseReference = FirebaseDatabase
-                .getInstance().getReferenceFromUrl("https://blood-types-77ce2-default-rtdb.firebaseio.com/");
+         db = FirebaseFirestore.getInstance();
         models = new ArrayList<>();
-
+//        dataBase = new DataBase(this);
+        preferences = getSharedPreferences("MyBlood",MODE_PRIVATE);
+        editor = preferences.edit();
+        floatingActionButton = findViewById(R.id.register);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.hasFixedSize();
+            showData();
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String name =  snapshot.child("User").child("name").getValue(String.class);
-                String number = snapshot.child("User").child("number").getValue(String.class);
-                String type = snapshot.child("User").child("type").getValue(String.class);
-                Model model = new Model(name,number,type);
-                models.add(model);
-                adapter = new RecyclerViewAdapter(MainActivity.this,models);
-                adapter.notifyDataSetChanged();
-                recyclerView.setAdapter(adapter);
-            }
+            public void onClick(View v) {
+                if (preferences.contains("name") || preferences.contains("number")){
+                    Toast.makeText(MainActivity.this, "انت مسجل فعلا",
+                            Toast.LENGTH_SHORT).show();
 
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+                }else {
+                    startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+                }
             }
         });
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.custemoptions, menu);
+        MenuItem item = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchBar(newText);
+
+                return true;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+    private void searchBar(String search) {
+       ArrayList<Model> list = new ArrayList<>();
+        for (Model m: models) {
+            if (m.getType().toLowerCase().contains(search.toLowerCase())
+                    || m.getName().toLowerCase().contains(search.toLowerCase())){
+                list.add(m);
+            }
+        }
+        RecyclerViewAdapter viewAdapter =
+                new RecyclerViewAdapter(MainActivity.this,list);
+        recyclerView.setAdapter(viewAdapter);
+    }
+    private void showData()
+    {
+
+        db.collection("User").orderBy("name", Query.Direction.ASCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null){
+                            Toast.makeText(
+                                    MainActivity.this, error.getMessage(),
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }else {
+                            for (DocumentChange document: value.getDocumentChanges()) {
+                                if (document.getType() == DocumentChange.Type.ADDED){
+                                    models.add(document.getDocument().toObject(Model.class));
+                                }
+                            }
+                            adapter = new RecyclerViewAdapter(MainActivity.this,models);
+                            recyclerView.setAdapter(adapter);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
     }
 

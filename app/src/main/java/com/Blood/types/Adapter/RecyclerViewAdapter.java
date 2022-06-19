@@ -1,5 +1,6 @@
 package com.Blood.types.Adapter;
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,8 +26,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.models = models;
 
     }
-
-
     @NonNull
     @Override
     public AdapterBelow onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,8 +39,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull AdapterBelow holder, int position) {
         Model model = models.get(position);
         holder.name.setText(model.getName());
-        holder.type.setText(model.getBlood_type());
         holder.number.setText(model.getNumber());
+        holder.type.setText(model.getType());
+        holder.location.setText(model.getLocation());
     }
 
     @Override
@@ -50,12 +50,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class AdapterBelow extends RecyclerView.ViewHolder{
-         TextView name,number,type;
+         TextView name,number,type,location;
         public AdapterBelow(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             number = itemView.findViewById(R.id.Number);
             type = itemView.findViewById(R.id.type);
+            location = itemView.findViewById(R.id.location);
 
         }
     }

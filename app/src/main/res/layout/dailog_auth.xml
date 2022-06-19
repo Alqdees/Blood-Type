@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/code"
+        android:padding="15dp"
+        android:hint="ضع رمز التأكيد"
+        android:textColorHint="@color/purple_500"
+        android:layout_margin="10dp"
+        android:shadowRadius="@integer/material_motion_duration_long_1"
+
+        />
+    <androidx.constraintlayout.utils.widget.MotionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/code"
+        android:background="@color/purple_500"
+        android:text="تاكيد"
+        android:id="@+id/confirm"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:layout_marginTop="28dp"
+        android:layout_centerInParent="true"
+        />
+
+</RelativeLayout>
