@@ -2,24 +2,20 @@ package com.Blood.types.Activity;
 
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.Blood.types.Adapter.RecyclerViewAdapter;
 import com.Blood.types.Model.Model;
 import com.Blood.types.R;
-import com.Blood.types.Sqlite.DataBase;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -27,7 +23,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 
 
@@ -38,19 +33,20 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton floatingActionButton;
     FirebaseFirestore db;
-    private DataBase dataBase;
-    private Model model;
-    private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // not change color in dark mode
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        /////////
         setContentView(R.layout.activity_main);
+
+
+
          db = FirebaseFirestore.getInstance();
         models = new ArrayList<>();
-        preferences = getSharedPreferences("MyBlood",MODE_PRIVATE);
-        editor = preferences.edit();
         floatingActionButton = findViewById(R.id.registerBtn);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -60,12 +56,7 @@ public class MainActivity extends AppCompatActivity {
             floatingActionButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (preferences.contains("name") || preferences.contains("number")){
-                        Toast.makeText(MainActivity.this, "انت مسجل فعلا",
-                                Toast.LENGTH_SHORT).show();
-                    }else {
-                        startActivity(new Intent(MainActivity.this, RegisterActivity.class));
-                    }
+                    startActivity(new Intent(MainActivity.this, RegisterActivity.class));
                 }
             });
 
@@ -125,11 +116,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
     }
 
 }

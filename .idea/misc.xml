@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1265" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable-v24/shape_left.xml" value="0.1345" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/buttom.xml" value="0.1345" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1265" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/shapebackground.xml" value="0.1345" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_login.xml" value="0.2234375" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_main.xml" value="0.20625" />
@@ -12,7 +14,10 @@
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_show_information.xml" value="0.2234375" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/cardview.xml" value="0.2" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/dailog_auth.xml" value="0.176" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/drop_down_item.xml" value="0.22239583333333332" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/menu/custemoptions.xml" value="0.2234375" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1265" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1265" />
       </map>
     </option>
   </component>

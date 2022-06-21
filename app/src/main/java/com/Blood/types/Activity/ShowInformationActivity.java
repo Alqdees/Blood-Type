@@ -3,13 +3,17 @@ package com.Blood.types.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.utils.widget.MotionButton;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.CursorWindow;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
 import com.Blood.types.R;
 import com.google.android.material.textview.MaterialTextView;
+
+import java.lang.reflect.Field;
 
 public class ShowInformationActivity extends AppCompatActivity {
 
@@ -21,6 +25,17 @@ public class ShowInformationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_information);
+
+        try {
+            @SuppressLint("DiscouragedPrivateApi")
+            Field field = CursorWindow.class.getDeclaredField("sCursorWindowSize");
+            field.setAccessible(true);
+            field.set(null, 100 * 1024 * 1024); //the 100MB is the new size
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         tv_name = findViewById(R.id.name);
         tv_number = findViewById(R.id.number);
         tv_type = findViewById(R.id.type);
