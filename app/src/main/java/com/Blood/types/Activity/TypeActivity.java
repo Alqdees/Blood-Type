@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.Blood.types.R;
+
 public class TypeActivity extends AppCompatActivity {
 
     @Override

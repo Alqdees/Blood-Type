@@ -28,7 +28,14 @@ import java.util.Map;
 
 
 public class RegisterActivity extends AppCompatActivity {
-
+    private static final String A_PLUS = "A+";
+    private static final String A_MINUS = "A-";
+    private static final String B_PLUS = "B+";
+    private static final String B_MINUS = "B-";
+    private static final String AB_PLUS = "AB+";
+    private static final String AB_MINUS = "A+";
+    private static final String O_PLUS = "O+";
+    private static final String O_MINUS = "O-";
     private com.google.android.material.textfield.TextInputEditText
             ET_name,ET_number, ET_location,Et_otp;
 //    private LinearLayout linearLayout;
@@ -81,6 +88,9 @@ public class RegisterActivity extends AppCompatActivity {
                 Settings.Secure.ANDROID_ID);
 
         ///////////////////////////////////////
+
+        // initialize variable
+
         ET_name = findViewById(R.id.name);
         ET_number = findViewById(R.id.number);
         ET_location = findViewById(R.id.location);
@@ -90,12 +100,6 @@ public class RegisterActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (db.collection("User").getId().contains(deviceId)){
-                    Toast.makeText(RegisterActivity.this, "Is Exist", Toast.LENGTH_SHORT).show();
-
-                return;
-                }else {
-
 
                     name = ET_name.getText().toString();
                     number = ET_number.getText().toString();
@@ -114,47 +118,11 @@ public class RegisterActivity extends AppCompatActivity {
                     else if (number.length() < 11) {
                         Toast.makeText(RegisterActivity.this, "الرقم قصير", Toast.LENGTH_SHORT).show();
                     }
-//
-//
-//
-//                sendVerifictionCode(number);
-//                linearLayout.setVisibility(View.VISIBLE);
-
-
                     // this is to register user blood donation
                     else {
-
-                        users = new HashMap<>();
-                        users.put("name", name);
-                        users.put("number", number);
-                        users.put("type", type);
-                        users.put("location", location);
-                        DocumentReference docID = db.collection("User").document(deviceId);
-                        docID.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-
-                                //Here to check if user device id is exist in fire store or not
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
-                                        //if exist
-                                        Toast.makeText(RegisterActivity.this, "أنت مسجل بالفعل", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        // if not exist
-                                        setData();
-                                    }
-                                } else {
-                                    // here to error
-                                   Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
-
-
-
+                        setData(name,number,type,location);
                     }
-                }
+
             }
 
         });
@@ -172,21 +140,53 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    public void setData(){
-        db.collection("User")
-                .document(deviceId).set(users).
-                addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        onBackPressed();
-                        finish();
+    public void setData(String name, String number, String type, String location){
+
+        users = new HashMap<>();
+        users.put("name", name);
+        users.put("number", number);
+        users.put("type", type);
+        users.put("location", location);
+//        if (type.equals(A_PLUS)){
+//
+//        }
+        DocumentReference docID = db.collection(type).document(deviceId);
+        docID.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                //Here to check if user device id is exist in fire store or not
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        //if exist
+                        Toast.makeText(RegisterActivity.this, "أنت مسجل بالفعل", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // if not exist
+                        db.collection(type)
+                                .document(deviceId).set(users).
+                                addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        onBackPressed();
+                                        finish();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                } else {
+                    // here to error
+                    Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+
+
 
 
     }
