@@ -8,7 +8,11 @@
         android:icon="@drawable/ic_earch"
         android:title="Search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
-
+    <item
+        android:id="@+id/developers"
+        android:title="من نحن"
+        android:icon="@drawable/ic_info"
+        app:showAsAction="always"/>
 
 
 

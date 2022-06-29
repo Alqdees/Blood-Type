@@ -6,10 +6,10 @@
         <shape
             android:shape="rectangle">
             <corners
-                android:bottomRightRadius="30dp"
-                android:bottomLeftRadius="30dp"
-                android:topLeftRadius="30dp"
-                android:topRightRadius="30dp"/>
+                android:bottomRightRadius="22dp"
+                android:bottomLeftRadius="22dp"
+                android:topLeftRadius="22dp"
+                android:topRightRadius="22dp"/>
             <gradient
                 android:startColor="@color/start"
                 android:endColor="@color/coloer"/>

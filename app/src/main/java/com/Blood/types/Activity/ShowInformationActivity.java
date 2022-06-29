@@ -1,6 +1,7 @@
 package com.Blood.types.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.utils.widget.MotionButton;
 
 import android.annotation.SuppressLint;
@@ -25,7 +26,7 @@ public class ShowInformationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_information);
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         try {
             @SuppressLint("DiscouragedPrivateApi")
             Field field = CursorWindow.class.getDeclaredField("sCursorWindowSize");

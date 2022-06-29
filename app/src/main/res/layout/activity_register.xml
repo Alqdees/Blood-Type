@@ -8,11 +8,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Activity.RegisterActivity">
 
+    <TextView
+        android:id="@+id/tv_information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:text="أذا كنت تريد تغير فصيلة الدم فعليك حذف المعلومات أولا والتسجيل من جديد"
+        android:textColor="@color/black"
+        android:textSize="22sp" />
+
+
+
+
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:hint="الاسم الرباعي"
+        android:layout_below="@+id/tv_information"
         android:textColorHint="@color/black"
         app:hintTextColor="@color/black"
         android:id="@+id/labelTest"
@@ -103,21 +122,56 @@
             android:shadowColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.constraintlayout.utils.widget.MotionButton
-        android:id="@+id/register"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_margin="8dp"
+        android:layout_below="@+id/loctionlable"
+        android:orientation="horizontal">
+
+        <androidx.constraintlayout.utils.widget.MotionButton
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/buttom"
+            android:text="تسجيل جديد"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+        <androidx.constraintlayout.utils.widget.MotionButton
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttom"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="حذف المعلومات"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/deleted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/loctionlable"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/buttom"
-        android:text="تسجيل"
-        android:textColor="@color/black"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        android:layout_alignParentStart="true"
 
 
-<!--    <LinearLayout-->
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="42dp"
+        android:src="@drawable/shape_left" />
+
+
+    <!--    <LinearLayout-->
 <!--        android:id="@+id/OTP"-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
