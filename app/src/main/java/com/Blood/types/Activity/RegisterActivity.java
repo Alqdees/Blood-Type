@@ -109,80 +109,8 @@ public class RegisterActivity extends AppCompatActivity {
         autoCompleteTextView = findViewById(R.id.typesAuto);
         autoCompleteTextView.setAdapter(arrayAdapter);
         if (isEditMode){
-            actionBar.setTitle("تحديث المعلومات");
-            register.setText("تحديث");
-            deleted.setVisibility(View.VISIBLE);
-            textView.setVisibility(View.VISIBLE);
-            String id = db.collection(Type).document(deviceId).getId();
-              if (id.equals(deviceId)){
-                  DocumentReference docRef = db.collection(Type).document(deviceId);
-                  docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                      @Override
-                      public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                          if (task.isSuccessful()) {
-                              DocumentSnapshot document = task.getResult();
-                              if (document.exists()) {
-                                  ET_name.setText(document.getString("name"));
-                                  ET_number.setText(document.getString("number"));
-                                  autoCompleteTextView.setText(document.getString("type"));
-                                  ET_location.setText(document.getString("location"));
-                              } else {
-                                  Toast.makeText(RegisterActivity.this,
-                                          "تأكد من أنك مسجل او في نفس صفحة الفصيلة",
-                                          Toast.LENGTH_LONG).show();
-                              }
-                          } else {
-                              Toast.makeText(RegisterActivity.this,
-                                      task.getException().toString(), Toast.LENGTH_SHORT).show();
-                          }
-                      }
-                  });
-              }
-            register.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    name = ET_name.getText().toString();
-                    number = ET_number.getText().toString();
-                    type = autoCompleteTextView.getText().toString();
-                    location = ET_location.getText().toString();
-                    users = new HashMap<>();
-                    users.put("name", name);
-                    users.put("number", number);
-                    users.put("type", type);
-                    users.put("location", location);
-                    if (type.isEmpty()) {
-                        return;
-                    }
-                        Toast.makeText(RegisterActivity.this, "تأكد من الفصيلة", Toast.LENGTH_SHORT).show();
-                        db.collection(type).document(deviceId).update(users).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(RegisterActivity.this, "تم التحديث ", Toast.LENGTH_SHORT).show();
-                                    onBackPressed();
-                                }
-                            }
-                        });
-
-
-//                    setData(name,number,type,location);
-                }
-            });
-            deleted.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                            DocumentReference documentReference = db.collection(Type).document(deviceId);
-
-                            documentReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(RegisterActivity.this, "تم الحذف", Toast.LENGTH_SHORT).show();
-                                    onBackPressed();
-                                }
-                            });
-                }
-            });
-
+//            getDataFirestore()
+           updateAndgetData();
         }else {
                     actionBar.setTitle("تسجيل متبرع دم");
                     register.setText("تسجيل");
@@ -267,6 +195,20 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+
+    private void deleteData(String tp)
+    {
+        DocumentReference documentReference = db.collection(tp).document(deviceId);
+        if (documentReference.getId().equals(deviceId)){
+            documentReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    Toast.makeText(RegisterActivity.this, "تم الحذف", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
+                }
+            });
+          }
+        }
     public void setData(String name, String number, String type, String location){
 
         users = new HashMap<>();
@@ -386,23 +328,154 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     }
-    private void upDateProfile(){
-        // if not exist
-        db.collection("User")
-                .document(deviceId).set(users).
-                addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        onBackPressed();
-                        finish();
+    private void upDateProfile(String tp){
+        name = ET_name.getText().toString();
+        number = ET_number.getText().toString();
+        type = autoCompleteTextView.getText().toString();
+        location = ET_location.getText().toString();
+        users = new HashMap<>();
+        users.put("name", name);
+        users.put("number", number);
+        users.put("type", type);
+        users.put("location", location);
+        if (type.isEmpty()) {
+            return;
+        }
+
+        db.collection(tp).document(deviceId).update(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(RegisterActivity.this, "تم التحديث ", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
+                }
+            }
+        });
+    }
+
+    private void updateAndgetData(){
+        actionBar.setTitle("تحديث المعلومات");
+        register.setText("تحديث");
+        deleted.setVisibility(View.VISIBLE);
+        textView.setVisibility(View.VISIBLE);
+        String id = db.collection(Type).document(deviceId).getId();
+
+        for (int i =0 ;i<types.length;i++){
+                DocumentReference docRef = db.collection(types[i]).document(deviceId);
+                if (id.equals(deviceId)) {
+                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    ET_name.setText(document.getString("name"));
+                                    ET_number.setText(document.getString("number"));
+                                    autoCompleteTextView.setText(document.getString("type"));
+                                    ET_location.setText(document.getString("location"));
+                                }
+                            } else {
+                                Toast.makeText(RegisterActivity.this,
+                                        task.getException().toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+        }
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                for (int i = 0 ;i<bloods.length;i++) {
+                    switch (bloods[i]) {
+                        case "A+":
+                            upDateProfile("A+");
+                            break;
+                        case "A-":
+                            upDateProfile("A-");
+                            break;
+
+                        case "B+":
+                            upDateProfile("B+");
+                            break;
+
+                        case "B-":
+                            upDateProfile("B-");
+                            break;
+
+                        case "AB+":
+                            upDateProfile("AB+");
+                            break;
+
+                        case "AB-":
+                            upDateProfile("AB-");
+                            break;
+
+                        case "O+":
+                            upDateProfile("O+");
+                            break;
+
+                        case "O-":
+                            upDateProfile("O-");
+                            break;
+
+                        default:
+                            Toast.makeText(RegisterActivity.this,
+                                    "أسمك غير موجود", Toast.LENGTH_SHORT).show();
+                            break;
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(RegisterActivity.this,
-                                e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        deleted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                for (int i = 0;i<types.length;i++){
+                    switch (types[i]){
+                        case "A+":
+                            deleteData("A+");
+                            break;
+                        case "A-":
+                            deleteData("A-");
+                            break;
+
+                        case "B+":
+                            deleteData("B+");
+                            break;
+
+                        case "B-":
+                            deleteData("B-");
+                            break;
+
+                        case "AB+":
+                            deleteData("AB+");
+                            break;
+
+                        case "AB-":
+                            deleteData("AB-");
+                            break;
+
+                        case "O+":
+                            deleteData("O+");
+                            break;
+
+                        case "O-":
+                            deleteData("O-");
+                            break;
+
+                        default:
+                            Toast.makeText(RegisterActivity.this,
+                                    "أسمك غير موجود", Toast.LENGTH_SHORT).show();
+                            break;
                     }
-                });
+                }
+
+            }
+        });
+
     }
 
 //
