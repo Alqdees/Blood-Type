@@ -65,6 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Intent intent;
     private boolean isEditMode;
     private TextView textView;
+    private DocumentReference doc;
 
     private String [] bloods;
 //    private FirebaseAuth auth;
@@ -78,6 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
         // not change color in dark mode
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         db = FirebaseFirestore.getInstance();
+
         actionBar=getSupportActionBar();
         deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
@@ -196,19 +198,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    private void deleteData(String tp)
-    {
-        DocumentReference documentReference = db.collection(tp).document(deviceId);
-        if (documentReference.getId().equals(deviceId)){
-            documentReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    Toast.makeText(RegisterActivity.this, "تم الحذف", Toast.LENGTH_SHORT).show();
-                    onBackPressed();
-                }
-            });
-          }
-        }
+
     public void setData(String name, String number, String type, String location){
 
         users = new HashMap<>();
@@ -375,11 +365,12 @@ public class RegisterActivity extends AppCompatActivity {
                                     ET_location.setText(document.getString("location"));
                                 }
                             } else {
-                                Toast.makeText(RegisterActivity.this,
-                                        task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, "Error", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
+                }else {
+                    Toast.makeText(this, "غير مسجل", Toast.LENGTH_SHORT).show();
                 }
         }
 
@@ -432,53 +423,88 @@ public class RegisterActivity extends AppCompatActivity {
         deleted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String st = autoCompleteTextView.getText().toString();
                 for (int i = 0;i<types.length;i++){
-                    switch (types[i]){
-                        case "A+":
-                            deleteData("A+");
-                            break;
-                        case "A-":
-                            deleteData("A-");
-                            break;
 
-                        case "B+":
-                            deleteData("B+");
-                            break;
+                    if (types[i].equals(st)) {
+                        doc = db.collection(types[i]).document(deviceId);
+                        doc.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(RegisterActivity.this, "تم الحذف ", Toast.LENGTH_SHORT).show();
+                                    finish();
+//                        onBackPressed();
+                                }
+                            }
 
-                        case "B-":
-                            deleteData("B-");
-                            break;
+                        });
 
-                        case "AB+":
-                            deleteData("AB+");
-                            break;
-
-                        case "AB-":
-                            deleteData("AB-");
-                            break;
-
-                        case "O+":
-                            deleteData("O+");
-                            break;
-
-                        case "O-":
-                            deleteData("O-");
-                            break;
-
-                        default:
-                            Toast.makeText(RegisterActivity.this,
-                                    "أسمك غير موجود", Toast.LENGTH_SHORT).show();
-                            break;
                     }
+
+
+
+
+
+
+
+//                    switch (types[i]) {
+//                        case "A+":
+//                            deleteData("A+");
+//                            break;
+//                        case "A-":
+//                            deleteData("A-");
+//                            break;
+//
+//                        case "B+":
+//                            deleteData("B+");
+//                            break;
+//
+//                        case "B-":
+//                            deleteData("B-");
+//                            break;
+//
+//                        case "AB+":
+//                            deleteData("AB+");
+//                            break;
+//
+//                        case "AB-":
+//                            deleteData("AB-");
+//                            break;
+//
+//                        case "O+":
+//                            deleteData("O+");
+//                            break;
+//
+//                        case "O-":
+//                            deleteData("O-");
+//                            break;
+//
+//                        default:
+//                            Toast.makeText(RegisterActivity.this,
+//                                    "أسمك غير موجود", Toast.LENGTH_SHORT).show();
+//                            break;
+//                    }
                 }
 
             }
         });
 
     }
-
+//    private void deleteData(String tp)
+//    {
 //
+////       String Id = db.collection(tp).document(deviceId).getId();
+////        System.out.println(Id +" __ "+deviceId);
+//
+//    }
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+////        deleteData("B+");
+//    }
+    //
 //    private PhoneAuthProvider.OnVerificationStateChangedCallbacks  mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 //        @Override
 //        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
