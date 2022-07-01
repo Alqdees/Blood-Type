@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
 //    private FloatingActionButton deleted_f;
     private String[] types;
 //    private String VerificationID;
+    private ProgressBar progressBar;
     private Map<String, Object> users;
     private Intent intent;
     private boolean isEditMode;
@@ -94,6 +96,8 @@ public class RegisterActivity extends AppCompatActivity {
         textView = findViewById(R.id.tv_information);
         textView.setVisibility(View.GONE);
         deleted.setVisibility(View.GONE);
+        progressBar = findViewById(R.id.progress);
+        progressBar.setVisibility(View.GONE);
 
         types = new String[]{
                 "A+",
@@ -219,33 +223,10 @@ public class RegisterActivity extends AppCompatActivity {
                     //Here to check if user device id is exist in fire store or not
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
-                        String getDocumentID = document.getId();
-                        if (document.exists()) {
-//                           if (isEditMode == true){
-//                               db.collection(type).document(deviceId).set(users)
-//                                       .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                           @Override
-//                                           public void onSuccess(Void unused) {
-//                                               Toast.makeText(RegisterActivity.this,
-//                                                       "تم التعديل", Toast.LENGTH_SHORT).show();
-//
-//                                               onBackPressed();
-//                                               finish();
-//                                           }
-//                                       }).addOnFailureListener(new OnFailureListener() {
-//                                           @Override
-//                                           public void onFailure(@NonNull Exception e) {
-//
-//                                               Toast.makeText(RegisterActivity.this,
-//                                                       e.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//                                           }
-//                                       });
-//                           }
 
+                        if (document.exists()) {
                                Toast.makeText(RegisterActivity.this,
                                        "انت مسجل بالفعل", Toast.LENGTH_SHORT).show();
-
                         } else {
                             // if not exist
                             db.collection(type)
@@ -348,11 +329,13 @@ public class RegisterActivity extends AppCompatActivity {
         register.setText("تحديث");
         deleted.setVisibility(View.VISIBLE);
         textView.setVisibility(View.VISIBLE);
-        String id = db.collection(Type).document(deviceId).getId();
-
+        progressBar.setVisibility(View.VISIBLE);
+//        String st = autoCompleteTextView.getText().toString();
         for (int i =0 ;i<types.length;i++){
                 DocumentReference docRef = db.collection(types[i]).document(deviceId);
-                if (id.equals(deviceId)) {
+            String id = db.collection(types[i]).document(deviceId).getId();
+
+            if (deviceId.equals(id)) {
                     docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -363,6 +346,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     ET_number.setText(document.getString("number"));
                                     autoCompleteTextView.setText(document.getString("type"));
                                     ET_location.setText(document.getString("location"));
+                                    progressBar.setVisibility(View.GONE);
                                 }
                             } else {
                                 Toast.makeText(RegisterActivity.this, "Error", Toast.LENGTH_SHORT).show();
@@ -371,6 +355,8 @@ public class RegisterActivity extends AppCompatActivity {
                     });
                 }else {
                     Toast.makeText(this, "غير مسجل", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                    break;
                 }
         }
 
@@ -390,11 +376,9 @@ public class RegisterActivity extends AppCompatActivity {
                         case "B+":
                             upDateProfile("B+");
                             break;
-
                         case "B-":
                             upDateProfile("B-");
                             break;
-
                         case "AB+":
                             upDateProfile("AB+");
                             break;
@@ -442,68 +426,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }
 
-
-
-
-
-
-
-//                    switch (types[i]) {
-//                        case "A+":
-//                            deleteData("A+");
-//                            break;
-//                        case "A-":
-//                            deleteData("A-");
-//                            break;
-//
-//                        case "B+":
-//                            deleteData("B+");
-//                            break;
-//
-//                        case "B-":
-//                            deleteData("B-");
-//                            break;
-//
-//                        case "AB+":
-//                            deleteData("AB+");
-//                            break;
-//
-//                        case "AB-":
-//                            deleteData("AB-");
-//                            break;
-//
-//                        case "O+":
-//                            deleteData("O+");
-//                            break;
-//
-//                        case "O-":
-//                            deleteData("O-");
-//                            break;
-//
-//                        default:
-//                            Toast.makeText(RegisterActivity.this,
-//                                    "أسمك غير موجود", Toast.LENGTH_SHORT).show();
-//                            break;
-//                    }
                 }
 
             }
         });
 
     }
-//    private void deleteData(String tp)
-//    {
-//
-////       String Id = db.collection(tp).document(deviceId).getId();
-////        System.out.println(Id +" __ "+deviceId);
-//
-//    }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-////        deleteData("B+");
-//    }
     //
 //    private PhoneAuthProvider.OnVerificationStateChangedCallbacks  mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 //        @Override
