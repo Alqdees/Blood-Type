@@ -6,11 +6,15 @@
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1265" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable-v24/shape_left.xml" value="0.1345" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/buttom.xml" value="0.1345" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/buttonselect.xml" value="0.12" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1265" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/select.xml" value="0.12" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/shapebackground.xml" value="0.1345" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/drawable/toolbar.xml" value="0.12" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_login.xml" value="0.2234375" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_main.xml" value="0.20625" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_register.xml" value="0.2234375" />
+        <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_select.xml" value="0.264" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_show_information.xml" value="0.2234375" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/activity_type.xml" value="0.1" />
         <entry key="..\:/Users/msi/StudioProjects/BloodTypes/app/src/main/res/layout/cardview.xml" value="0.2" />

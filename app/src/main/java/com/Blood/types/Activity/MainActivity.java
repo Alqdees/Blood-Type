@@ -51,14 +51,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseRemoteConfig remoteConfig;
     private int currentVersionCod;
     private Intent intent;
-//    private String APlus;
+
     private String Types;
-//    private ArrayList<String> result;
-//    private static final byte CAMERA_REQUEST_CODE = 100;
-//    private static final byte STORAGE_REQUEST_CODE_EXPORT = 1;
-//    private static final byte STORAGE_REQUEST_CODE_IMPORT = 2;
-//    private static final byte SPEECH_REQUEST = 101;
-//    private ExtendedFloatingActionButton searching;
+
 
 
     @Override
@@ -122,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-///////// below code to update app in  on create
+///////// below code to update app in on create
         currentVersionCod = getCurrentVersionCode();
         remoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()

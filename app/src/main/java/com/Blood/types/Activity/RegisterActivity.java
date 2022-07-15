@@ -168,22 +168,12 @@ public class RegisterActivity extends AppCompatActivity {
 //        confirm = findViewById(R.id.confirm);
 //        Et_otp = findViewById(R.id.code);
 
-
-
-
-
         ///////////////////////////////////////
         //deviceId = Add a new document with a constants Android ID
-
 
         ///////////////////////////////////////
 
         // initialize variable
-
-
-
-
-
 
 //        confirm.setOnClickListener(new View.OnClickListener() {
 //            @Override
