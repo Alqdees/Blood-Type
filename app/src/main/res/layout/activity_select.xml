@@ -5,15 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.SelectActivity">
-
-
     <RelativeLayout
-
-
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-
         android:background="@drawable/toolbar">
 
         <TextView
@@ -24,7 +19,7 @@
             android:fontFamily="@font/somar"
             android:text="ناحية الزاب"
             android:textColor="@color/white"
-            android:textSize="26sp" />
+            android:textSize="33sp" />
 
 
     </RelativeLayout>
@@ -56,10 +51,13 @@
                 android:layout_height="109dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
+
+                android:drawablePadding="15dp"
+                android:shadowColor="@color/blue"
                 android:background="@drawable/buttonselect"
                 android:drawableTop="@drawable/doctor1"
                 android:fontFamily="@font/somar"
-                android:outlineSpotShadowColor="@color/teal_700"
+                android:outlineSpotShadowColor="@color/circle"
                 android:padding="8dp"
                 android:text="اطباء الزاب"
                 android:textColor="@color/black"
@@ -74,7 +72,8 @@
                 android:background="@drawable/buttonselect"
                 android:drawableTop="@drawable/car1"
                 android:fontFamily="@font/somar"
-                android:outlineSpotShadowColor="@color/teal_700"
+                android:shadowColor="@color/blue"
+                android:outlineSpotShadowColor="@color/circle"
                 android:padding="5dp"
                 android:text="خطوط النقل"
                 android:textColor="@color/black"
@@ -82,18 +81,19 @@
 
         </LinearLayout>
 
-        <androidx.constraintlayout.utils.widget.MotionButton
+          <androidx.constraintlayout.utils.widget.MotionButton
             android:id="@+id/blood"
             android:layout_width="155dp"
             android:layout_height="109dp"
             android:layout_below="@+id/liner"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="8dp"
+            android:shadowColor="@color/blue"
             android:background="@drawable/buttonselect"
             android:clipToOutline="true"
             android:drawableTop="@drawable/blood1"
             android:fontFamily="@font/somar"
-            android:outlineSpotShadowColor="@color/teal_700"
+            android:outlineSpotShadowColor="@color/circle"
             android:paddingTop="8dp"
             android:text="فصائل الدم"
             android:textColor="@color/black"
@@ -108,24 +108,36 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="0dp">
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottonAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/bottonAppBar"
-
-
-            tools:ignore="MissingConstraints">
+            app:fabCradleMargin="10dp"
+            app:fabCradleRoundedCornerRadius="10dp"
+            app:fabCradleVerticalOffset="10dp"
+            tools:ignore="BottomAppBar,MissingConstraints">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/navigation"
-                app:menu="@menu/botton_navbar"
-                android:background="@drawable/navbar"
-                android:layout_marginRight="16dp"
-                />
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/navbar_shape"
+                app:menu="@menu/botton_navbar" />
+        </com.google.android.material.bottomappbar.BottomAppBar>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add"
+            app:layout_constraintEnd_toEndOf="@+id/bottonAppBar"
+            app:layout_constraintStart_toStartOf="@+id/bottonAppBar"
+            android:id="@+id/Add"
+            layout_anchor="@id/navigation"
+            app:backgroundTint="@color/blue"
+            tools:ignore="MissingConstraints" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
