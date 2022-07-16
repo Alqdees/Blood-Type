@@ -7,13 +7,13 @@
     tools:context=".Activity.SelectActivity">
 
 
-
     <RelativeLayout
 
 
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+
         android:background="@drawable/toolbar">
 
         <TextView
@@ -21,20 +21,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:fontFamily="@font/somar"
             android:text="ناحية الزاب"
             android:textColor="@color/white"
-            android:textSize="22sp"
-            android:textStyle="bold"
-
-            />
+            android:textSize="26sp" />
 
 
     </RelativeLayout>
 
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="495dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
         android:layout_marginStart="25dp"
         android:layout_marginTop="-25dp"
@@ -42,60 +40,94 @@
         android:background="@drawable/select">
 
 
-        <androidx.constraintlayout.utils.widget.MotionButton
-            android:layout_width="120dp"
-            android:layout_height="109dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="182dp"
-            android:layout_marginBottom="269dp"
-            android:background="@drawable/buttonselect"
-            android:drawableTop="@drawable/doctor1"
-            android:outlineSpotShadowColor="@color/teal_200"
-            android:padding="12dp"
-            android:text="اطباء الزاب"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:id="@+id/liner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
 
-        <androidx.constraintlayout.utils.widget.MotionButton
-            android:layout_width="120dp"
-            android:layout_height="109dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="33dp"
-            android:layout_marginBottom="269dp"
-            android:background="@drawable/buttonselect"
-            android:clipToOutline="true"
-            android:drawableTop="@drawable/car1"
-            android:padding="5dp"
-            android:text="خطوط النقل"
-            android:textColor="@color/black"
-            android:textSize="21sp"
-            android:textStyle="bold" />
+            >
 
+            <androidx.constraintlayout.utils.widget.MotionButton
+                android:id="@+id/doctor"
+                android:layout_width="0dp"
+                android:layout_height="109dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/buttonselect"
+                android:drawableTop="@drawable/doctor1"
+                android:fontFamily="@font/somar"
+                android:outlineSpotShadowColor="@color/teal_700"
+                android:padding="8dp"
+                android:text="اطباء الزاب"
+                android:textColor="@color/black"
+                android:textSize="26sp" />
+
+            <androidx.constraintlayout.utils.widget.MotionButton
+                android:id="@+id/lineTravel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/buttonselect"
+                android:drawableTop="@drawable/car1"
+                android:fontFamily="@font/somar"
+                android:outlineSpotShadowColor="@color/teal_700"
+                android:padding="5dp"
+                android:text="خطوط النقل"
+                android:textColor="@color/black"
+                android:textSize="26sp" />
+
+        </LinearLayout>
 
         <androidx.constraintlayout.utils.widget.MotionButton
             android:id="@+id/blood"
-            android:layout_width="120dp"
+            android:layout_width="155dp"
             android:layout_height="109dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="105dp"
-            android:layout_marginBottom="139dp"
+            android:layout_below="@+id/liner"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/buttonselect"
             android:clipToOutline="true"
             android:drawableTop="@drawable/blood1"
-            android:paddingTop="10dp"
+            android:fontFamily="@font/somar"
+            android:outlineSpotShadowColor="@color/teal_700"
+            android:paddingTop="8dp"
             android:text="فصائل الدم"
             android:textColor="@color/black"
-            android:textSize="21sp"
-            android:textStyle="bold" />
+            android:textSize="26sp" />
 
 
     </RelativeLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bottonAppBar"
+
+
+            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/navigation"
+                app:menu="@menu/botton_navbar"
+                android:background="@drawable/navbar"
+                android:layout_marginRight="16dp"
+                />
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
