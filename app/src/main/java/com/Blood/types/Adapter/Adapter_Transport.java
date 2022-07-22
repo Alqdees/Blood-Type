@@ -1,9 +1,11 @@
 package com.Blood.types.Adapter;
 
 import android.content.Context;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,9 +22,11 @@ public class Adapter_Transport extends RecyclerView.Adapter<Adapter_Transport.Ad
     private Context context;
 
 
+
     public Adapter_Transport(Context context, ArrayList<ModelTransport> list){
         this.context = context;
         this.modelTransports= list;
+
     }
     @NonNull
     @Override
@@ -54,19 +58,13 @@ public class Adapter_Transport extends RecyclerView.Adapter<Adapter_Transport.Ad
     }
 
     class AdapterTransport extends RecyclerView.ViewHolder{
-
         private TextView tv_name,tv_number,tv_title,tv_line;
-
-
         public AdapterTransport(@NonNull View itemView) {
             super(itemView);
-
             tv_name=itemView.findViewById(R.id.name);
             tv_number=itemView.findViewById(R.id.Number);
             tv_title= itemView.findViewById(R.id.title);
             tv_line=itemView.findViewById(R.id.line);
-
-
         }
     }
 }

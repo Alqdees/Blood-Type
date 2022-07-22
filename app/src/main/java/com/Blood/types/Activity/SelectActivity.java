@@ -16,7 +16,7 @@ import meow.bottomnavigation.MeowBottomNavigation;
 public class SelectActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
-    private MotionButton line;
+    private MotionButton line,blood;
 //    private MeowBottomNavigation navigation;
 
     @Override
@@ -27,16 +27,20 @@ public class SelectActivity extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.hide();
         line = findViewById(R.id.lineTravel);
+        blood = findViewById(R.id.blood);
         line.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SelectActivity.this,Transportation_linesActivity.class));
             }
         });
-//        navigation = findViewById(R.id.botton_navigation);
-//        navigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_add));
 
-
+        blood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SelectActivity.this,TypeActivity.class));
+            }
+        });
 
     }
 }
