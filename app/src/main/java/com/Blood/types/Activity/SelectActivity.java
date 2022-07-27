@@ -16,7 +16,7 @@ import meow.bottomnavigation.MeowBottomNavigation;
 public class SelectActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
-    private MotionButton line,blood;
+    private MotionButton line,blood,doctor;
 //    private MeowBottomNavigation navigation;
 
     @Override
@@ -28,6 +28,7 @@ public class SelectActivity extends AppCompatActivity {
         actionBar.hide();
         line = findViewById(R.id.lineTravel);
         blood = findViewById(R.id.blood);
+        doctor = findViewById(R.id.doctor);
         line.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,6 +40,14 @@ public class SelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SelectActivity.this,TypeActivity.class));
+            }
+        });
+        doctor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(SelectActivity.this,DoctorActivity.class));
+
             }
         });
 

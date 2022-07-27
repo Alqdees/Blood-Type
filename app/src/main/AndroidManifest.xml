@@ -16,6 +16,9 @@
         android:theme="@style/Theme.BloodTypes"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.DoctorActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.Transportation_linesActivity"
             android:exported="false" />
         <activity
