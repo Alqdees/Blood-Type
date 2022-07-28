@@ -6,13 +6,13 @@
         <shape
             android:shape="rectangle">
             <corners
-                android:bottomRightRadius="22dp"
-                android:bottomLeftRadius="22dp"
-                android:topLeftRadius="22dp"
-                android:topRightRadius="22dp"/>
-            <gradient
-                android:startColor="@color/start"
-                android:endColor="@color/coloer"/>
+                android:bottomRightRadius="@dimen/_10ssp"
+                android:bottomLeftRadius="@dimen/_10ssp"
+                android:topLeftRadius="@dimen/_10ssp"
+                android:topRightRadius="@dimen/_10ssp"/>
+            <solid
+                android:color="@color/coloer"
+                />
         </shape>
 
     </item>
