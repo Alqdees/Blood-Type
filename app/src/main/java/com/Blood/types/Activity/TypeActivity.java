@@ -8,13 +8,13 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Icon;
+
 import android.net.Uri;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -26,7 +26,7 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 public class TypeActivity extends AppCompatActivity {
 
     private MaterialButton A_plus, A_Minus,B_plus,B_Minus,AB_plus,AB_Minus,O_Plus,O_Minus;
-    private ExtendedFloatingActionButton floatingActionButton;
+//    private ExtendedFloatingActionButton floatingActionButton;
     private Intent intent;
     private static final String type = "type";
     private ExtendedFloatingActionButton message;
@@ -40,7 +40,7 @@ public class TypeActivity extends AppCompatActivity {
         initialization();
 
         intent = new Intent(this,MainActivity.class);
-        floatingActionButton = findViewById(R.id.registerBtn);
+//        floatingActionButton = findViewById(R.id.registerBtn);
 
         A_plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,12 +98,12 @@ public class TypeActivity extends AppCompatActivity {
             }
         });
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(TypeActivity.this, RegisterActivity.class));
-            }
-        });
+//        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(TypeActivity.this, RegisterActivity.class));
+//            }
+//        });
 
     }
 

@@ -9,7 +9,7 @@
 
         <androidx.constraintlayout.utils.widget.MotionButton
             android:id="@+id/line_request"
-            android:layout_width="@dimen/_100ssp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
@@ -25,7 +25,7 @@
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold" />
         <androidx.constraintlayout.utils.widget.MotionButton
-            android:layout_width="@dimen/_100ssp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:id="@+id/doctorAdd"
             android:layout_below="@id/line_request"
@@ -42,7 +42,7 @@
 
         <androidx.constraintlayout.utils.widget.MotionButton
             android:id="@+id/add_blood"
-            android:layout_width="@dimen/_100ssp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/_8ssp"

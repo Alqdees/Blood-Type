@@ -74,9 +74,27 @@ public class SelectActivity extends AppCompatActivity {
         addLine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(SelectActivity.this, ":ود مورنينك", Toast.LENGTH_SHORT).show();
+
+
+
             }
         });
+        addDoctor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              startActivity(new Intent(SelectActivity.this,Sendrequest.class));
+            }
+        });
+
+
+        addBlood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SelectActivity.this,RegisterActivity.class));
+            }
+        });
+
+
         builder.create().show();
 
 
