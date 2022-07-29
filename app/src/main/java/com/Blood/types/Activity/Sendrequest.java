@@ -28,12 +28,13 @@ public class Sendrequest extends AppCompatActivity {
     private DatabaseReference ref;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sendrequest);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("أضافة طبيب");
+        actionBar.hide();
         nameET = findViewById(R.id.name);
         numberET = findViewById(R.id.number);
         specializationET = findViewById(R.id.specialization);

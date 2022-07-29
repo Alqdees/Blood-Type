@@ -1,6 +1,7 @@
 package com.Blood.types.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -17,6 +18,7 @@ import android.view.Menu;
 
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.Blood.types.R;
@@ -29,14 +31,17 @@ public class TypeActivity extends AppCompatActivity {
 //    private ExtendedFloatingActionButton floatingActionButton;
     private Intent intent;
     private static final String type = "type";
-    private ExtendedFloatingActionButton message;
 
+    private ActionBar actionBar;
+    private Button AddDonation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        actionBar=getSupportActionBar();
+        actionBar.hide();
         initialization();
 
         intent = new Intent(this,MainActivity.class);
@@ -91,12 +96,14 @@ public class TypeActivity extends AppCompatActivity {
             }
         });
 
-        message.setOnClickListener(new View.OnClickListener() {
+        AddDonation = findViewById(R.id.addDonation);
+        AddDonation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getDialog();
+                startActivity(new Intent(TypeActivity.this,RegisterActivity.class));
             }
         });
+
 
 //        floatingActionButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -170,9 +177,6 @@ public class TypeActivity extends AppCompatActivity {
         AB_Minus = findViewById(R.id.ABminuse);
         O_Plus = findViewById(R.id.Opluse);
         O_Minus = findViewById(R.id.Ominuse);
-        message = findViewById(R.id.msg);
-
-
     }
 
     @SuppressLint("HardwareIds")

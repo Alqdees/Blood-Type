@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         /////////
         setContentView(R.layout.activity_main);
+
         db = FirebaseFirestore.getInstance();
         intent = getIntent();
         Types = intent.getStringExtra("type");
@@ -140,12 +142,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-//        searching.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                speechToText();
-//            }
-//        });
 
     }
     private void showUpdateDialog() {

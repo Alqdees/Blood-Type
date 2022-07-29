@@ -62,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
 //    private FloatingActionButton deleted_f;
     private String[] types;
 //    private String VerificationID;
-    private ProgressBar progressBar;
+
     private Map<String, Object> users;
     private Intent intent;
     private boolean isEditMode;
@@ -85,6 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
         actionBar=getSupportActionBar();
         deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
+        actionBar.hide();
         intent= getIntent();
         isEditMode = intent.getBooleanExtra("isEditMode",false);
         Type = intent.getStringExtra("types");
@@ -96,8 +97,8 @@ public class RegisterActivity extends AppCompatActivity {
         textView = findViewById(R.id.tv_information);
         textView.setVisibility(View.GONE);
         deleted.setVisibility(View.GONE);
-        progressBar = findViewById(R.id.progress);
-        progressBar.setVisibility(View.GONE);
+
+
 
         types = new String[]{
                 "A+",
@@ -118,8 +119,6 @@ public class RegisterActivity extends AppCompatActivity {
 //            getDataFirestore()
            updateAndgetData();
         }else {
-                    actionBar.setTitle("تسجيل متبرع دم");
-                    register.setText("تسجيل");
             register.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -319,7 +318,7 @@ public class RegisterActivity extends AppCompatActivity {
         register.setText("تحديث");
         deleted.setVisibility(View.VISIBLE);
         textView.setVisibility(View.VISIBLE);
-        progressBar.setVisibility(View.VISIBLE);
+
 //        String st = autoCompleteTextView.getText().toString();
         for (int i =0 ;i<types.length;i++){
                 DocumentReference docRef = db.collection(types[i]).document(deviceId);
@@ -336,7 +335,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     ET_number.setText(document.getString("number"));
                                     autoCompleteTextView.setText(document.getString("type"));
                                     ET_location.setText(document.getString("location"));
-                                    progressBar.setVisibility(View.GONE);
+
                                 }
                             } else {
                                 Toast.makeText(RegisterActivity.this, "Error", Toast.LENGTH_SHORT).show();
@@ -345,7 +344,7 @@ public class RegisterActivity extends AppCompatActivity {
                     });
                 }else {
                     Toast.makeText(this, "غير مسجل", Toast.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.GONE);
+
                     break;
                 }
         }
